@@ -1,0 +1,93 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.hypothesis/
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.log
+nosetests.xml
+test-output.xml
+
+# === Node / Frontend ===
+node_modules/
+app/frontend/node_modules/
+app/frontend/.vite/
+app/frontend/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+
+# === Environment / Secrets ===
+.env
+.env.*
+!.env.example
+*.env
+
+# === Data & Models (large files) ===
+data/raw/
+data/processed/*.pkl
+data/processed/*.csv
+models/*.zip
+models/*.pt
+models/*.pth
+*.zip
+*.h5
+*.npy
+
+# === Notebooks outputs (keep .ipynb but strip outputs via nbstripout ideally) ===
+.ipynb_checkpoints/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# === IDE ===
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sublime-project
+*.sublime-workspace
+
+# === Cache ===
+cache/
+*.cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# === Misc ===
+ANTIGRAVITY_STATE_LOG.md
+*.zip
