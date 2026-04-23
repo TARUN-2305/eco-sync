@@ -1,0 +1,11 @@
+# Environments & Secrets
+.env
+__pycache__/
+*.pyc
+node_modules/
+dist/
+.DS_Store
+
+# Logs
+AGENTS_LOG.md
+antigravity_state.json

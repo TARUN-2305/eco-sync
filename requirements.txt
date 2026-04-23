@@ -1,0 +1,9 @@
+requests
+polyline
+numpy
+faker
+fastapi
+websockets
+groq
+python-dotenv
+uvicorn

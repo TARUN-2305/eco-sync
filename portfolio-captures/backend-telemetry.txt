@@ -1,0 +1,11 @@
+[12:38:16] WS /ws/live tick buses=Bus_1@1, Bus_2@101 traffic=1 latest_debate=Kengeri TTMC
+[12:38:18] WS /ws/live tick buses=Bus_1@2, Bus_2@102 traffic=1 latest_debate=Kengeri TTMC
+INFO:     127.0.0.1:60153 - "GET /api/map HTTP/1.1" 200 OK
+[12:38:21] WS /ws/live tick buses=Bus_1@3, Bus_2@103 traffic=1 latest_debate=Kengeri TTMC
+[12:38:23] WS /ws/live tick buses=Bus_1@4, Bus_2@104 traffic=1 latest_debate=Kengeri TTMC
+[12:38:25] WS /ws/live tick buses=Bus_1@5, Bus_2@105 traffic=1 latest_debate=Kengeri TTMC
+[12:38:26] WS /ws/live tick buses=Bus_1@6, Bus_2@106 traffic=1 latest_debate=Kengeri TTMC
+[12:38:27] WS /ws/live tick buses=Bus_1@7, Bus_2@107 traffic=1 latest_debate=none
+[12:38:28] WS /ws/live tick buses=Bus_1@8, Bus_2@108 traffic=1 latest_debate=none
+[12:38:29] WS /ws/live tick buses=Bus_1@9, Bus_2@109 traffic=1 latest_debate=none
+[12:38:30] WS /ws/live tick buses=Bus_1@10, Bus_2@110 traffic=1 latest_debate=none

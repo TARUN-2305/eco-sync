@@ -1,0 +1,21 @@
+{
+  "url": "http://localhost:5181",
+  "statusText": "Live",
+  "markerCount": 2,
+  "vectorCount": 6,
+  "stopSummary": [
+    "Kengeri TTMCCrowd load4waiting",
+    "UttarahalliCrowd load6waiting",
+    "Konanakunte CrossCrowd load5waiting",
+    "GottigereCrowd load4waiting",
+    "Electronic CityCrowd load4waiting"
+  ],
+  "feedSummary": [
+    "Kengeri TTMCBus_1vsBus_2Bus 1 holds for traffic, Bus 2 proceeds with fewer passengersBus_1: HOLDBus_2: PROCEED",
+    "Kengeri TTMCBus_1vsBus_2Bus 2 proceeding to reduce wait time for 2 passengersBus_1: HOLDBus_2: PROCEED",
+    "Kengeri TTMCBus_1vsBus_2Bus 1 holds to pick up waiting passengers, Bus 2 proceeds to reduce traffic congestionBus_1: HOLDBus_2: PROCEED",
+    "Kengeri TTMCBus_1vsBus_2Bus 1 holds to pick up waiting passengers, Bus 2 proceeds to reduce traffic congestion aheadBus_1: HOLDBus_2: PROCEED",
+    "Kengeri TTMCBus_1vsBus_2Bus 1 holds to pick up waiting passengers, Bus 2 proceeds to reduce traffic congestionBus_1: HOLDBus_2: PROCEED",
+    "Kengeri TTMCBus_1vsBus_2Bus 1 holds to pick up waiting passengers, Bus 2 proceeds to avoid traffic delayBus_1: HOLDBus_2: PROCEED"
+  ]
+}
