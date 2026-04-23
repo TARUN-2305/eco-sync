@@ -22,20 +22,29 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global simulation state for controls
+# Global simulation state
 sim_config = {
-    "mode": "agentic",  # 'static' or 'agentic'
-    "reset_flag": False
+    "mode": "agentic",
+    "reset_flag": False,
+    "arrival_scale": 1.0   # P4-A: multiplier for passenger arrival rates
 }
 
 class ResetRequest(BaseModel):
     mode: str = "agentic"
+
+class ConfigRequest(BaseModel):
+    arrival_scale: float = 1.0
 
 @app.post("/api/reset")
 async def reset_simulation(req: ResetRequest):
     sim_config["mode"] = req.mode
     sim_config["reset_flag"] = True
     return {"status": "ok", "mode": req.mode}
+
+@app.post("/api/config")
+async def update_config(req: ConfigRequest):
+    sim_config["arrival_scale"] = max(0.1, min(3.0, req.arrival_scale))
+    return {"status": "ok", "arrival_scale": sim_config["arrival_scale"]}
 
 @app.get("/api/results")
 def get_results():
@@ -72,7 +81,9 @@ async def websocket_endpoint(websocket: WebSocket):
                 action, _ = model.predict(obs, deterministic=True)
                 action = int(action)
             else:
-                action = 0  # Static mode proceeds
+                # Real static timetable logic: HOLD if bus ahead is too close
+                gap_ahead = float(obs[0])
+                action = 1 if gap_ahead <= 2 else 0
                 
             obs, reward, done, truncated, info = env.step(action)
             
@@ -81,7 +92,14 @@ async def websocket_endpoint(websocket: WebSocket):
                 "fuel_cost": float(info.get("fuel_cost", 0)),
                 "revenue": float(info.get("revenue", 0))
             }
-            explanation = explain_action(bus_id, action, econ_data)
+            # Apply arrival scale from sim_config
+            scale = sim_config.get("arrival_scale", 1.0)
+            current_bus_stop = env.bus_pos[bus_id]
+            env.stops[current_bus_stop]['queue_length'] = max(
+                0, env.stops[current_bus_stop]['queue_length'] * scale
+            )
+            loop = asyncio.get_event_loop()
+            explanation = await loop.run_in_executor(None, explain_action, bus_id, action, econ_data)
             
             # Construct payload
             bus_pos_list = [{"id": int(k), "stop": int(v)} for k, v in env.bus_pos.items()]
@@ -99,7 +117,8 @@ async def websocket_endpoint(websocket: WebSocket):
                     "bus_id": bus_id,
                     "action": action,
                     "explanation": explanation,
-                    "reward": float(reward)
+                    "reward": float(reward),
+                    "bunching": int(info.get("bunching", 0))
                 }
             }
             

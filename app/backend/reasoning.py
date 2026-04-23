@@ -7,13 +7,23 @@ import groq
 
 def explain_action(bus_id, action, econ_data):
     action_str = {0: "PROCEED", 1: "HOLD", 2: "SKIP"}.get(action, "UNKNOWN")
-    prompt = f"Bus {bus_id} chose to {action_str}. Economic calculation: Wait cost=₹{econ_data['wait_cost']:.0f}, Fuel cost=₹{econ_data['fuel_cost']:.0f}, Revenue=₹{econ_data['revenue']:.0f}. Explain in 1 sentence why this was the economically optimal decision."
-    
-    api_key = os.environ.get("GROQ_API_KEY")
+    api_key = os.environ.get("GROQ_API_KEY", "").strip()
+
+    # Rule-based fallback — app works without an API key
     if not api_key:
-        raise ValueError("GROQ_API_KEY environment variable is missing.")
-    api_key = api_key.strip()
-        
+        net = econ_data['revenue'] - econ_data['wait_cost'] - econ_data['fuel_cost']
+        return (
+            f"Bus {bus_id} chose {action_str}: revenue ₹{econ_data['revenue']:.0f} "
+            f"vs wait ₹{econ_data['wait_cost']:.0f} + fuel ₹{econ_data['fuel_cost']:.0f} "
+            f"→ net ₹{net:.0f}."
+        )
+
+    prompt = (
+        f"Bus {bus_id} chose to {action_str}. "
+        f"Economic calculation: Wait cost=₹{econ_data['wait_cost']:.0f}, "
+        f"Fuel cost=₹{econ_data['fuel_cost']:.0f}, Revenue=₹{econ_data['revenue']:.0f}. "
+        f"Explain in 1 sentence why this was the economically optimal decision."
+    )
     client = groq.Groq(api_key=api_key)
     resp = client.chat.completions.create(
         model="llama-3.1-8b-instant",

@@ -1,0 +1,11 @@
+gymnasium
+stable-baselines3[extra]
+fastapi
+uvicorn[standard]
+websockets
+groq
+pandas
+numpy
+osmnx
+python-dotenv
+scipy

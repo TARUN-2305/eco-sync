@@ -111,7 +111,8 @@ def main():
     static_env_val = static_results['avg_revenue'] - (static_results['avg_wait_cost'] + static_results['avg_fuel_cost'])
     agentic_env_val = agentic_results['avg_revenue'] - (agentic_results['avg_wait_cost'] + agentic_results['avg_fuel_cost'])
     
-    efficiency_gain = ((agentic_env_val - static_env_val) / abs(static_env_val)) * 100 if static_env_val != 0 else 0
+    # P2-C fix: positive = agentic is cheaper = good
+    efficiency_gain = ((static_env_val - agentic_env_val) / abs(static_env_val)) * 100 if static_env_val != 0 else 0
     
     results = {
         'summary': {

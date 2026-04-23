@@ -9,7 +9,10 @@ class BengaluruBusEnv(gym.Env):
         super(BengaluruBusEnv, self).__init__()
         
         # Load synthetic data
-        data_path = "data/processed/bengaluru_simulation_data.pkl"
+        data_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "data", "processed", "bengaluru_simulation_data.pkl"
+        )
         with open(data_path, "rb") as f:
             self.data = pickle.load(f)
             
@@ -110,7 +113,8 @@ class BengaluruBusEnv(gym.Env):
             'revenue': float(revenue),
             'wait_cost': float(wait_cost),
             'fuel_cost': float(fuel_cost),
-            'gap_ahead': float(obs[0])
+            'gap_ahead': float(obs[0]),
+            'bunching': 1 if float(obs[0]) <= 1.0 else 0
         }
         
         return obs, float(reward), done, False, info

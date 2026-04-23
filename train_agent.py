@@ -17,8 +17,8 @@ def main():
     print("Initializing PPO Agent with MlpPolicy...")
     model = PPO("MlpPolicy", vec_env, verbose=1)
     
-    print("Starting training for 10000 timesteps...")
-    model.learn(total_timesteps=10000)
+    print("Starting training for 100,000 timesteps...")
+    model.learn(total_timesteps=100_000)
     
     model_path = "models/eco_sync_ppo"
     model.save(model_path)

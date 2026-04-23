@@ -213,7 +213,7 @@ function App() {
               </div>
 
               {/* CBA summary card - full width */}
-              <SummaryCard metrics={staticMetrics} />
+              <SummaryCard metrics={staticMetrics} equityGini={simulationState.equityGini} />
 
               {/* Economics chart - full width, tall */}
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5">
@@ -221,7 +221,7 @@ function App() {
                   Live Economic Metrics (₹ per step)
                 </h3>
                 <div className="h-72">
-                  <EconomicsPanel data={simulationState.history} />
+                  <EconomicsPanel data={simulationState.history} staticMetrics={staticMetrics} />
                 </div>
               </div>
 
