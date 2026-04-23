@@ -150,8 +150,8 @@ def main():
         json.dump(results, f, indent=4)
         
     print("\n--- Simulation Complete ---")
-    print(f"Static ENV: ₹{static_env_val:.2f}")
-    print(f"Agentic ENV: ₹{agentic_env_val:.2f}")
+    print(f"Static ENV:    Rs.{static_env_val:.2f}")
+    print(f"Agentic ENV:   Rs.{agentic_env_val:.2f}")
     print(f"Efficiency Gain: {efficiency_gain:.2f}%")
     print("Results saved to results/simulation_results.json")
 
